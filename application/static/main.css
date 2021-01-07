@@ -1,0 +1,70 @@
+.nav-link:hover {
+    color: black !important;
+}
+p {
+    line-height: 1.5;
+}
+#loginForm{
+    display: flex !important;
+    flex-direction: column;
+    margin-top: 30px !important;
+    width: 500px;
+    min-width: 500px;
+    margin:auto;
+    justify-content: space-evenly;
+
+}
+
+.btn-primary.focus,.btn-primary:focus {
+    box-shadow: 0 0 0 .2rem rgba(238, 63, 63, 0.5) !important;
+
+}
+.btn-primary {
+    border-color: white !important;
+}
+.container{
+    margin-top: 30px;
+    margin-bottom: 30px;
+    
+}
+.form-check, .form-control{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.custom-select{
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+#radioContainer{
+    display: flex;
+    justify-content: space-between;
+}
+body {
+    background: url('/static/pexels-quintin-gellar-313782.jpg') no-repeat center center fixed !important;
+    -webkit-background-size: cover !important;
+    -moz-background-size: cover !important;
+    background-size: cover !important;
+    -o-background-size: cover !important;
+  }
+  .rootContainer{
+      background-color: white;
+      margin:5%;
+      padding:3%;
+      min-width: 650px;
+      border-radius: 10px;
+  }
+  .teamContainer{
+      display: flex;
+      flex-direction: row;
+  }
+  .teamContainer div{
+    padding: 30px;
+}
+@media only screen and (max-width: 1387px) {
+    .teamContainer {
+        display: flex;
+        flex-direction: column;
+    }
+  }
+  

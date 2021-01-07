@@ -1,0 +1,153 @@
+{% extends "main.html" %}
+
+{% block header %}
+    {{ super() }}
+{% endblock %}
+
+{% block body %}
+
+<form  action='/estimate' method="POST" id="dataForm">
+<p style='text-align: center;  text-decoration: underline;'><strong>Describe your listing below</strong></p>
+
+
+<div class='container' id='radioContainer'>
+<!-- Host Information -->
+<div>
+<span>Are you a 'Superhost'?</span>
+<div class="form-check">
+  <input class="form-check-input" type="radio" name="host_is_superhost" id="host_is_superhost_yes" value="yes" checked>
+  <label class="form-check-label" for="host_is_superhost_yes">
+    Yes
+  </label>
+</div>
+<div class="form-check">
+  <input class="form-check-input" type="radio" name="host_is_superhost" id="host_is_superhost_no" value="no">
+  <label class="form-check-label" for="host_is_superhost_no">
+    No
+  </label>
+</div>
+</div>
+
+<div>
+<span>Have you uploaded a profile picture to AirBnB?</span>
+<div class="form-check">
+  <input class="form-check-input" type="radio" name="host_has_profile_pic" id="host_has_profile_pic_yes" value="yes" checked>
+  <label class="form-check-label" for="host_has_profile_pic_yes">
+    Yes
+  </label>
+</div>
+<div class="form-check">
+  <input class="form-check-input" type="radio" name="host_has_profile_pic" id="host_has_profile_pic_no" value="no">
+  <label class="form-check-label" for="host_has_profile_pic_no">
+    No
+  </label>
+</div>
+</div>
+
+<div>
+<span>Have you verified your identity with AirBnB?</span>
+<div class="form-check">
+  <input class="form-check-input" type="radio" name="host_identity_verified" id="host_identity_verified_yes" value="yes" checked>
+  <label class="form-check-label" for="host_identity_verified_yes">
+    Yes
+  </label>
+</div>
+<div class="form-check">
+  <input class="form-check-input" type="radio" name="host_identity_verified" id="host_identity_verified_no" value="no">
+  <label class="form-check-label" for="host_identity_verified_no">
+    No
+  </label>
+</div>
+</div>
+
+<div>
+<span>Is your listing instant bookable?</span>
+<div class="form-check">
+  <input class="form-check-input" type="radio" name="instant_bookable" id="instant_bookable_yes" value="yes" checked>
+  <label class="form-check-label" for="instant_bookable_yes">
+    Yes
+  </label>
+</div>
+<div class="form-check">
+  <input class="form-check-input" type="radio" name="instant_bookable" id="instant_bookable_no" value="no">
+  <label class="form-check-label" for="instant_bookable_no">
+    No
+  </label>
+</div>
+<!-- Host Information -->
+</div>
+</div>
+
+<div class='container' id='locations'>
+
+  <!-- state -->
+  <select class="custom-select" id="state" name="state">
+    <option selected>{{states[0]}}</option>
+    {% for state in states[1:] %}
+    <option value="{{state}}">{{state}}</option>
+    {% endfor %}
+  </select>
+  <!-- Property type -->
+  <select class="custom-select" id="property_type" name="property_type">
+    <option selected>{{ property_types[0].capitalize() }}</option>
+    {% for pt in property_types[1:] %}
+    <option value="{{pt}}">{{ pt.capitalize() }}</option>
+    {% endfor %}
+  </select>
+  
+  <!-- Room type -->
+  <select class="custom-select" id="room_type" name="room_type">
+    <option selected>{{ room_types[0].capitalize() }}</option>
+    {% for rt in room_types[1:] %}
+    <option value="{{rt}}">{{rt.capitalize()}}</option>
+    {% endfor %}
+  </select>
+
+  <input type="number" min='1' max='16' class="form-control" name="accommodates" placeholder="How many people can your listing accommodate?" required>
+  <input type="number" min='0' max='16' class="form-control" name="bathrooms" placeholder="Number of bathrooms" required>
+  <input type="number" min='1' max='50' class="form-control" name="bedrooms" placeholder="Number of bedrooms" required>
+  <input type="number" min='1' max='55' class="form-control" name="beds" placeholder="Number of beds" required>
+  <input type="number" min='0' class="form-control" name="number_of_reviews" placeholder="Number of reviews" required>
+  <span>Date of your most recent review</span>
+  <input type="date" value="{{current_date}}" min="2010-01-01" max="{{current_date}}" class="form-control" name='last_review_time' placeholder="Days since last review" required>
+  <input type="number" min='1' class="form-control" name='number_of_amenities' placeholder="Total number of amenities" required>
+  
+  <select multiple class="custom-select" id="amenities" name="amenities" data-toggle="tooltip" data-placement="top" title="Select multiple options with Ctrl + Left Click">
+    {% for am in amenities %}
+    <option value="{{am}}">{{am.capitalize().replace("_", " ")}}</option>
+    {% endfor %}
+  </select>
+
+
+
+
+
+</div>
+<div class='container' style='text-align: right;'>
+<button id='dataFormSubmit' type="submit" class="btn btn-primary" style="width: 150px; background-color: rgb(238, 63, 63);">Estimate</button>
+</div>
+</form>
+{% if script %}
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<div id="id01" class="w3-modal" style="display: block;">
+  <div class="w3-modal-content" style=" border-radius: 10px; height: 200px;">
+    <div class="w3-container">
+      <span onclick="document.getElementById('id01').style.display='none'" class="w3-button w3-display-topright">&times;</span>
+      <p style="font-size: xx-large; text-align: center;">Estimated price:</p>
+      <p style = "font-size: xx-large; text-align: center;">{{prediction}}$ / night</p>
+    </div>
+  </div>
+</div>
+</div>
+{% endif %}
+
+
+<script src="static/location_dropdown.js"></script>
+<script>
+$(function () {
+  $('[data-toggle="tooltip"]').tooltip()})
+
+</script>
+
+{% endblock %}
+

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AirBnB Price Prediction</title>
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="/static/main.css">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/@popperjs/core@2/dist/umd/popper.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+
+<body style='background: url("/static/bg_image/{{ range(1, 7) | random}}.jpg") no-repeat center center fixed !important;
+-webkit-background-size: cover !important;
+-moz-background-size: cover !important;
+background-size: cover !important;
+-o-background-size: cover !important;'>
+    {% block header %}
+  
+    <nav class="navbar navbar-expand-lg navbar-light" style='background-color: #ee3f3f;'>
+        <a class="navbar-brand" href="./" style="color: aliceblue;">Valuebnb</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link" href="/predictions" style="color: aliceblue;">Predictions<span class="sr-only">(current)</span></a>
+            </li>
+            <!-- <li class="nav-item">
+              <a class="nav-link" href="/process" style="color: aliceblue;">Process</a>
+            </li> -->
+            <li class="nav-item">
+              <a class="nav-link" href="/team" style="color: aliceblue;">Team</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/auth" style="color: aliceblue;">Log In</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+      <div id='myPlot'></div>
+      {% endblock %}
+      <div class='rootContainer'>
+      {% block body %}
+      <p>
+        {% block text %}
+        <p style='text-align: center;  text-decoration: underline;'><strong>Welcome!</strong></p>
+       Are you an AirBnB host or considering becoming one? Do you need help figuring out how much you should charge your guests?
+        Take advantage of our handy <a href="/predictions">tool</a> for predicting the best price for your AirBnB listing!
+        {% endblock %}
+        </p>
+        </div>
+      {% endblock %}
+    </div>
+    <!-- <script src="static/figures.js"></script> -->
+</body>
+</html>

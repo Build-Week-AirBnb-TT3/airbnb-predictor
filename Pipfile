@@ -1,14 +1,21 @@
 [[source]]
-name = "pypi"
 url = "https://pypi.org/simple"
 verify_ssl = true
-
-[dev-packages]
+name = "pypi"
 
 [packages]
+flask = "*"
 pandas = "*"
 numpy = "*"
+joblib = "*"
+gunicorn = "*"
+sklearn = "*"
+cython = "*"
+category-encoders = "*"
 xgboost = "*"
+cmake = "3.18.4.post1"
+
+[dev-packages]
 
 [requires]
 python_version = "3.8"
